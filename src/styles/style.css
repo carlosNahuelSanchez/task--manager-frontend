@@ -77,6 +77,15 @@
   transition: 0.4s;
 }
 
+.boton-actualizar{
+  background-color: rgb(84, 84, 84);
+  border: 1px solid #0a0a0a;
+  border-radius: 4px;
+  padding: 6px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+
 .formulario-tarea{
   display: flex;
   flex-direction: column;
@@ -92,7 +101,7 @@
 .boton-subir-tarea{
   margin-bottom: 15px;
   padding: 2px;
-  background-color: rgb(78, 78, 78);
+  background-color: rgb(1, 79, 28);
   color: #ffffff;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 500;
@@ -101,7 +110,7 @@
 }
 .boton-subir-tarea:hover{
   transition: 0.2s;
-  background-color: rgb(105, 105, 105);
+  background-color: rgb(1, 97, 33);
   border-radius: 5px;
 }
 .boton-subir-tarea:not(:hover){

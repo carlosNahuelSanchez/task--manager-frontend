@@ -1,5 +1,5 @@
 import "../styles/style.css";
-import { obtenerTareas, eliminarTareas, subirTareas } from "./services";
+import { obtenerTareas, eliminarTareas, subirTareas, actualizarTareas } from "./services";
 
 //Renderizar todas las tareas actuales
 const renderTareas = async () => {
@@ -36,8 +36,12 @@ const renderTareas = async () => {
                 console.error("NO SE PUDO ELIMINAR LA TAREA",error)
             }
         })
-        $tareaContenedor.appendChild($botonEliminar);
+        const $botonActualizar = document.createElement("button")
+        $botonActualizar.innerText = "Actualizar"
+        $botonActualizar.classList.add("boton-actualizar")
 
+        $tareaContenedor.appendChild($botonEliminar);
+        $tareaContenedor.appendChild($botonActualizar)
         $listaTareas.appendChild($tareaContenedor)
     });
 }
