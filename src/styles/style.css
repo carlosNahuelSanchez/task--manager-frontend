@@ -12,22 +12,69 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .titulo-general{
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.app{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  border: 2px solid rgb(136, 136, 136);
+  border-radius: 16px;
+}
 .lista-tareas{
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-direction: row;
   gap: 10px;
   margin-left: 20px;
+  padding: 40px;
+  margin: 5px;
+  max-width: 758px ;
+  flex-wrap: wrap;
 }
 
 .tarea{
-  border: solid rgb(255, 255, 255);
-  background-color: #131313;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  background-color: #0c0c0c;
+
   padding: 10px;
-  max-width: 300px
+  padding-top: 0.1px;
+  min-width: 350px;
+  max-height: 350px ;
+}
+.tarea:hover{
+  transition: 0.4s;
+  background-color:#141414 ;
+
+  border-radius: 13px;
+}
+.tarea:not(:hover){
+  transition: 0.4s;
+}
+
+.boton-eliminar {
+  background-color: rgb(122, 1, 1);
+  border: 1px solid #0a0a0a;
+  border-radius: 4px;
+  padding: 6px;
+}
+.boton-eliminar:hover {
+  transition: 0.4s;
+  background-color: rgb(99, 1, 1);
+}
+.boton-eliminar:not(:hover) {
+  transition: 0.4s;
+}
+
+.formulario-tarea{
+  display: flex;
+  flex-direction: column;
+  padding-right: 60px;
+}
+.tarea-descripcion{
+  min-height: 300px;
 }

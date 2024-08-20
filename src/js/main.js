@@ -1,5 +1,5 @@
 import "../styles/style.css";
-import { obtenerTareas, eliminarTareas  } from "./services";
+import { obtenerTareas, eliminarTareas, subirTareas } from "./services";
 
 //Renderizar todas las tareas actuales
 const renderTareas = async () => {
@@ -33,7 +33,7 @@ const renderTareas = async () => {
                 await eliminarTareas(tarea.id)
                 renderTareas()
             } catch (error) {
-                console.error("NO SE PUDO ELIMINAR LA TAREA")
+                console.error("NO SE PUDO ELIMINAR LA TAREA",error)
             }
         })
         $tareaContenedor.appendChild($botonEliminar);
@@ -42,6 +42,26 @@ const renderTareas = async () => {
     });
 }
 
+const  agregarTarea =  async (e) => {
+    e.preventDefault()
+
+    const title = document.getElementById("tareaNombre").value
+    const description = document.getElementById("tareaDescripcion").value
+    let isComplete = document.getElementById("tareaEstado").checked
+    isComplete = isComplete ? true : false;
+
+    try {
+        await subirTareas({title, description, isComplete })
+        console.log([title, description, isComplete ])
+        renderTareas()
+    } catch (error) {
+        console.error("NO SE PUDO AÑADIR LA TAREA" , error)
+    }
+}
+
+const $formularioTareaNueva = document.getElementById("formularioTarea")
+
+$formularioTareaNueva.addEventListener("submit",agregarTarea)
 
 renderTareas()
 
