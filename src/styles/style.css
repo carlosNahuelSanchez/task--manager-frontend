@@ -40,7 +40,6 @@
   border: 2px solid rgb(255, 255, 255);
   border-radius: 10px;
   background-color: #0c0c0c;
-
   padding: 10px;
   padding-top: 0.1px;
   min-width: 350px;
@@ -56,11 +55,19 @@
   transition: 0.4s;
 }
 
+.tarea-estado-container{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
 .boton-eliminar {
   background-color: rgb(122, 1, 1);
   border: 1px solid #0a0a0a;
   border-radius: 4px;
   padding: 6px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 500;
 }
 .boton-eliminar:hover {
   transition: 0.4s;
@@ -75,6 +82,28 @@
   flex-direction: column;
   padding-right: 60px;
 }
+.tarea-nombre{
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
 .tarea-descripcion{
-  min-height: 300px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.boton-subir-tarea{
+  margin-bottom: 15px;
+  padding: 2px;
+  background-color: rgb(78, 78, 78);
+  color: #ffffff;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 0px
+}
+.boton-subir-tarea:hover{
+  transition: 0.2s;
+  background-color: rgb(105, 105, 105);
+  border-radius: 5px;
+}
+.boton-subir-tarea:not(:hover){
+  transition: 0.2s;
 }

@@ -48,11 +48,17 @@ const  agregarTarea =  async (e) => {
     const title = document.getElementById("tareaNombre").value
     const description = document.getElementById("tareaDescripcion").value
     let isComplete = document.getElementById("tareaEstado").checked
-    isComplete = isComplete ? true : false;
+    isComplete = isComplete ? 1 : 0;
+    
+    const nuevaTarea = {
+        title : title,
+        description: description,
+        isComplete: isComplete
+    }
 
     try {
-        await subirTareas({title, description, isComplete })
-        console.log([title, description, isComplete ])
+        await subirTareas(nuevaTarea)
+        console.log(typeof(nuevaTarea))
         renderTareas()
     } catch (error) {
         console.error("NO SE PUDO AÑADIR LA TAREA" , error)

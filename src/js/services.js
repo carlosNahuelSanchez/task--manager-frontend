@@ -23,12 +23,17 @@ export const eliminarTareas = (id) => {
 };
 
 //Subir Tareas
-export const subirTareas = async ({ title, description, isComplete }) => {
-    return fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify({ title, description, isComplete }),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }).then((response) => response.json());
+export const subirTareas = async ({title,description,isComplete}) => {
+    try {
+        return fetch(API_URL, {
+            method: "POST",
+            body: JSON.stringify({title,description,isComplete}),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((response) => response.json());
+    } catch (error) {
+        console.error("NO SE PUDO SUBIR LA TAREA", error)
+    }
+    
 };

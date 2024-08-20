@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./src/styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Administrador de tareas</title>
   </head>
   <body>
     <h1 class="titulo-general">Administrador de Tareas:</h1>
@@ -17,10 +17,12 @@
         <label for="tareaNombre" class="tarea-nombre-label"><h2>Nombre de la Tarea:</h2></label>
           <input type="text" id="tareaNombre" class="tarea-nombre">
         <label for="tareaDescripcion" class="tarea-descripcion-label"><h3>Descripcion:</h2></label>
-          <input type="text" id="tareaDescripcion" class="tarea-descripcion">
-        <label for="tareaEstado" class="tarea-estado-label"><h4>Tarea terminada:</h4></label>
-          <input type="checkbox" id="tareaEstado" class="tarea-estado">
-        <button type="submit">Subir Tarea</button>
+          <textarea id="tareaDescripcion" class="tarea-descripcion" rows="10"></textarea>
+        <div class="tarea-estado-container">
+            <label for="tareaEstado" class="tarea-estado-label"><h4>Tarea terminada:</h4></label>
+            <input type="checkbox" id="tareaEstado" class="tarea-estado">
+        </div>
+        <button type="submit" class="boton-subir-tarea">Subir Tarea</button>
       </form>
     </div>
     <script type="module" src="src/js/main.js"></script>
