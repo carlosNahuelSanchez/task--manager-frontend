@@ -1,5 +1,5 @@
 import "../styles/style.css";
-import { obtenerTareas, eliminarTareas, subirTareas } from "./services";
+import { obtenerTareas, eliminarTareas, subirTareas, actualizarTareas } from "./services";
 
 //Renderizar todas las tareas actuales
 const renderTareas = async () => {
@@ -13,7 +13,7 @@ const renderTareas = async () => {
         $tareaContenedor.classList.add("border-2", "border-white", "bg-zinc-950", "px-5", "pt-2", "w-fit", "h-fit", "rounded-lg");
 
         const $tareaTitulo = document.createElement("p");
-        $tareaTitulo.classList.add("w-48","break-words")
+        $tareaTitulo.classList.add("w-48", "break-words")
         const $titulo = document.createElement("h3");
         $titulo.classList.add("font-bold", "my-2");
         $titulo.textContent = "Titulo:";
@@ -22,7 +22,7 @@ const renderTareas = async () => {
         $tareaContenedor.appendChild($tareaTitulo);
 
         const $tareaDescripcion = document.createElement("p");
-        $tareaDescripcion.classList.add("w-80","break-words")
+        $tareaDescripcion.classList.add("w-80", "break-words")
         const $descripcion = document.createElement("h3");
         $descripcion.classList.add("font-bold", "my-2");
         $descripcion.textContent = "Descripcion:";
@@ -43,9 +43,9 @@ const renderTareas = async () => {
         $botonEliminar.classList.add("bg-red-700", "p-2", "rounded-md", "my-5", "hover:bg-red-950", "transition-all", "mr-2");
         $botonEliminar.addEventListener("click", async () => {
             const $idDeTarea = await tarea.id
-            const $modal = document.getElementById("modal").classList.remove("hidden")   
+            document.getElementById("modalEliminarTarea").classList.remove("hidden")
 
-            const $modalConfirmar = document.getElementById("modalConfirmar")
+            const $modalConfirmar = document.getElementById("botonModalConfirmar")
             $modalConfirmar.addEventListener("click", async () => {
                 try {
                     await eliminarTareas($idDeTarea);
@@ -54,12 +54,12 @@ const renderTareas = async () => {
                     console.error("NO SE PUDO ELIMINAR LA TAREA", error);
                 }
                 finally {
-                    document.getElementById("modal").classList.add("hidden");
-                }  
+                    document.getElementById("modalEliminarTarea").classList.add("hidden");
+                }
             })
-            const $modalCancelar = document.getElementById("modalCancelar")
+            const $modalCancelar = document.getElementById("botonModalCancelar")
             $modalCancelar.addEventListener("click", async () => {
-                document.getElementById("modal").classList.add("hidden");
+                document.getElementById("modalEliminarTarea").classList.add("hidden");
             })
         });
 
@@ -68,6 +68,40 @@ const renderTareas = async () => {
         const $botonActualizar = document.createElement("button");
         $botonActualizar.innerText = "Actualizar";
         $botonActualizar.classList.add("bg-zinc-500", "p-2", "rounded-md", "hover:bg-zinc-700", "transition-all");
+        $botonActualizar.addEventListener("click", async () => {
+            const $idDeTarea = await tarea.id
+            document.getElementById("modalActualizarTarea").classList.remove("hidden")
+
+            document.getElementById("tareaNombreNuevo").value = tarea.title;
+            document.getElementById("tareaDescripcionNuevo").value = tarea.description;
+            document.getElementById("tareaEstadoNuevo").checked = tarea.isComplete;
+
+            const $botonActualizarForm = document.getElementById("botonActualizar")
+            $botonActualizarForm.addEventListener("click", async (e) => {
+                e.preventDefault()
+
+                const title = document.getElementById("tareaNombreNuevo").value
+                const description = document.getElementById("tareaDescripcionNuevo").value
+                let isComplete = document.getElementById("tareaEstadoNuevo").checked
+                isComplete = isComplete ? 1 : 0;
+
+                try {
+                    await actualizarTareas($idDeTarea, { title, description, isComplete });
+                    renderTareas();
+                } catch (error) {
+                    console.error("NO SE PUDO ACTUALIZAR LA TAREA", error);
+                }
+                finally {
+                    document.getElementById("modalActualizarTarea").classList.add("hidden");
+                }
+            })
+            const $botonCancelarActualizar = document.getElementById("botonCancelarActualizar")
+            $botonCancelarActualizar.addEventListener("click", async (e) => {
+                e.preventDefault()
+
+                document.getElementById("modalActualizarTarea").classList.add("hidden");
+            })
+        })
 
         $tareaContenedor.appendChild($botonEliminar);
         $tareaContenedor.appendChild($botonActualizar);
@@ -92,12 +126,11 @@ const agregarTarea = async (e) => {
 
     try {
         await subirTareas(nuevaTarea)
-        console.log(typeof (nuevaTarea))
         renderTareas()
     } catch (error) {
         console.error("NO SE PUDO AÑADIR LA TAREA", error)
     }
-    finally{
+    finally {
         document.getElementById("formularioTarea").reset()
     }
 }

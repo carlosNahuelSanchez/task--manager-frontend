@@ -32,3 +32,18 @@ export const subirTareas = async ({ title, description, isComplete }) => {
         },
     }).then((response) => response.json());
 };
+
+export const actualizarTareas = (id, { title, description, isComplete }) => {
+    return fetch(API_URL + `/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+            title,
+            description,
+            isComplete,
+        }),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+};
+

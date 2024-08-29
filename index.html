@@ -40,7 +40,7 @@
     </form>
   </div>
 
-  <div id="modal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex justify-center items-center z-50">
+  <div id="modalEliminarTarea" class="fixed inset-0 hidden bg-black bg-opacity-50 flex justify-center items-center z-50">
     <div class="group select-none w-[250px] flex flex-col p-4 relative items-center justify-center bg-zinc-800 border border-gray-800 shadow-lg rounded-2xl">
       <div class="text-center p-3 flex-auto justify-center">
         <svg fill="currentColor" viewBox="0 0 20 20" class="group-hover:animate-bounce w-12 h-12 flex items-center text-gray-600 fill-red-800 mx-auto" xmlns="http://www.w3.org/2000/svg">
@@ -52,9 +52,38 @@
         </p>
       </div>
       <div class="p-2 mt-2 text-center space-x-1 md:block">
-        <button id="modalCancelar" class="mb-2 bg-gray-700 px-5 py-2 text-sm shadow-sm font-medium tracking-wider border-2 border-gray-600 hover:border-gray-700 text-gray-300 rounded-full hover:shadow-lg hover:bg-gray-800 transition ease-in duration-300">Cancelar</button>
-        <button id="modalConfirmar" class="bg-red-500 hover:bg-transparent px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 hover:border-red-500 text-white hover:text-red-500 rounded-full transition ease-in duration-300">Confirmar</button>
+        <button id="botonModalCancelar" class="mb-2 bg-gray-700 px-5 py-2 text-sm shadow-sm font-medium tracking-wider border-2 border-gray-600 hover:border-gray-700 text-gray-300 rounded-full hover:shadow-lg hover:bg-gray-800 transition ease-in duration-300">Cancelar</button>
+        <button id="botonModalConfirmar" class="bg-red-500 hover:bg-transparent px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 hover:border-red-500 text-white hover:text-red-500 rounded-full transition ease-in duration-300">Confirmar</button>
       </div>
+    </div>
+  </div>  
+
+  <div id="modalActualizarTarea" class="fixed inset-0 hidden bg-black bg-opacity-70 flex justify-center items-center z-50">
+    <div class="group select-none w-fit h-fit relative items-center justify-center bg-zinc-900 border border-gray-800 shadow-lg rounded-2xl">
+      <form id="formularioTareaNuevo" class="flex flex-col px-20 py-5 gap-3">
+        <h1 class="text-lg font-semibold">Actualizar Tarea</h1>
+        <label for="tareaNombreNuevo" class="text-md font-medium">
+          <h2>Nombre de la Tarea:</h2>
+        </label>
+        <input type="text" id="tareaNombreNuevo" class="w-72 p-2 bg-zinc-800 rounded-md" placeholder="Matematicas">
+        <label for="tareaDescripcionNuevo" class="text-md font-medium ">
+          <h3>Descripcion:</h2>
+        </label>
+        <textarea id="tareaDescripcionNuevo" class="w-72 p-2 bg-zinc-800 rounded-md" rows="10"
+          placeholder="TP N°2:Funcion Lineal"></textarea>
+        <div class="flex items-center gap-2">
+          <label for="tareaEstado" class="text-md font-medium">
+            <h4>Tarea terminada:</h4>
+          </label>
+          <input type="checkbox" id="tareaEstadoNuevo">
+        </div>
+        <div class="flex flex-row gap-8">
+          <button id="botonActualizar" type="submit" class="bg-green-950 p-3 rounded-lg hover:bg-green-900 transition-colors">Actualizar
+            Tarea</button>
+          <button id="botonCancelarActualizar" type="submit" class="bg-red-950 p-3 rounded-lg hover:bg-red-900 transition-colors">Cancelar
+              </button>
+        </div>
+      </form>
     </div>
   </div>  
   <script type="module" src="src/js/main.js"></script>
