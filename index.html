@@ -13,12 +13,12 @@
   <title>Administrador de tareas</title>
 </head>
 
-<body class="bg-zinc-900 text-white font-custom">
-  <div id="app" class="flex justify-between flex-row border-2 border-gray-300 rounded-md m-4">
+<body class="bg-zinc-900 text-white font-custom border-gray-300 rounded-lg p-6">
+  <div id="app" class="flex justify-between flex-row">
     <div id="lista-tareas" class="flex flex-row gap-4 ml-2 py-10 pl-16 flex-wrap ">
 
     </div>
-    <form id="formularioTarea" class="flex flex-col p-16 pt-10 gap-3">
+    <form id="formularioTarea" class="flex flex-col px-16 py-7 gap-3">
       <h1 class="text-lg font-semibold">Crear Nueva Tarea</h1>
       <label for="tareaNombre" class="text-md font-medium">
         <h2>Nombre de la Tarea:</h2>
@@ -39,6 +39,24 @@
         Tarea</button>
     </form>
   </div>
+
+  <div id="modal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div class="group select-none w-[250px] flex flex-col p-4 relative items-center justify-center bg-zinc-800 border border-gray-800 shadow-lg rounded-2xl">
+      <div class="text-center p-3 flex-auto justify-center">
+        <svg fill="currentColor" viewBox="0 0 20 20" class="group-hover:animate-bounce w-12 h-12 flex items-center text-gray-600 fill-red-800 mx-auto" xmlns="http://www.w3.org/2000/svg">
+          <path clip-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" fill-rule="evenodd"></path>
+        </svg>
+        <h2 class="text-xl font-bold py-4 text-gray-200">¿Estás Seguro?</h2>
+        <p class="font-bold text-sm text-gray-500 px-2">
+          ¿Estás seguro de que quieres eliminar la tarea seleccionada?
+        </p>
+      </div>
+      <div class="p-2 mt-2 text-center space-x-1 md:block">
+        <button id="modalCancelar" class="mb-2 bg-gray-700 px-5 py-2 text-sm shadow-sm font-medium tracking-wider border-2 border-gray-600 hover:border-gray-700 text-gray-300 rounded-full hover:shadow-lg hover:bg-gray-800 transition ease-in duration-300">Cancelar</button>
+        <button id="modalConfirmar" class="bg-red-500 hover:bg-transparent px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 hover:border-red-500 text-white hover:text-red-500 rounded-full transition ease-in duration-300">Confirmar</button>
+      </div>
+    </div>
+  </div>  
   <script type="module" src="src/js/main.js"></script>
 </body>
 
