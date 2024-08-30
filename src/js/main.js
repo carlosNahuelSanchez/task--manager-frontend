@@ -116,7 +116,7 @@ const renderTareas = async () => {
     });
 }
 
-
+//Agregar la tarea a través de formulario
 const agregarTarea = async (e) => {
     e.preventDefault()
 
