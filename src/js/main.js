@@ -10,37 +10,46 @@ const renderTareas = async () => {
 
     tareas.forEach(tarea => {
         const $tareaContenedor = document.createElement("div");
-        $tareaContenedor.classList.add("border-2", "border-white", "bg-zinc-950", "px-5", "pt-2", "w-fit", "h-fit", "rounded-lg");
+        $tareaContenedor.classList.add("border-2", "border-white", "bg-zinc-950", "pt-5","pb-2","pr-24","pl-5", "max-w-72", "h-fit", "rounded-lg");
 
-        const $tareaTitulo = document.createElement("p");
-        $tareaTitulo.classList.add("w-48", "break-words")
-        const $titulo = document.createElement("h3");
-        $titulo.classList.add("font-bold", "my-2");
+        const $titulo = document.createElement("span");
+        $titulo.classList.add("font-bold");
         $titulo.textContent = "Titulo:";
-        $tareaTitulo.appendChild($titulo);
-        $tareaTitulo.appendChild(document.createTextNode(tarea.title));
-        $tareaContenedor.appendChild($tareaTitulo);
+        const $tareaTitulo = document.createElement("div");
+        $tareaTitulo.classList.add("w-48","font-medium","my-2","break-words")
+        $tareaTitulo.textContent = tarea.title
+        $titulo.appendChild($tareaTitulo);
+        $tareaContenedor.appendChild($titulo);
 
-        const $tareaDescripcion = document.createElement("p");
-        $tareaDescripcion.classList.add("w-80", "break-words")
-        const $descripcion = document.createElement("h3");
-        $descripcion.classList.add("font-bold", "my-2");
-        $descripcion.textContent = "Descripcion:";
-        $tareaDescripcion.appendChild($descripcion);
-        $tareaDescripcion.appendChild(document.createTextNode(tarea.description));
-        $tareaContenedor.appendChild($tareaDescripcion);
+        const $descripcion = document.createElement("span");
+        $descripcion.classList.add("font-bold" );
+        $descripcion.textContent = "Descripción:";
+        const $tareaDescripcion = document.createElement("div");
+        $tareaDescripcion.classList.add("w-60","font-medium","my-2","break-words")
+        $tareaDescripcion.textContent = tarea.description
+        $descripcion.appendChild($tareaDescripcion);
+        $tareaContenedor.appendChild($descripcion);
 
-        const $tareaEstado = document.createElement("p");
-        const $estado = document.createElement("h3");
-        $estado.classList.add("font-bold", "my-2");
+        const $estado = document.createElement("span");
+        $estado.classList.add("font-bold" );
         $estado.textContent = "Estado:";
-        $tareaEstado.appendChild($estado);
-        $tareaEstado.appendChild(document.createTextNode(tarea.isComplete == 0 ? " Incompleto" : " Completo"));
-        $tareaContenedor.appendChild($tareaEstado);
+        const $tareaEstado = document.createElement("div");
+        $tareaEstado.classList.add("w-48","font-medium","my-2")
+        $tareaEstado.textContent = (tarea.isComplete == 0 ? "Incompleto": "Completo")
+        if (tarea.isComplete != 0) {
+            $tareaDescripcion.classList.add("line-through")
+            $tareaTitulo.classList.add("line-through")
+        }
+        $estado.appendChild($tareaEstado);
+        $tareaContenedor.appendChild($estado);
+        
+        const $contenedorBotones = document.createElement("div")
+        $contenedorBotones.classList.add("flex","flex-row")
 
         const $botonEliminar = document.createElement("button");
         $botonEliminar.innerText = "Eliminar";
         $botonEliminar.classList.add("bg-red-700", "p-2", "rounded-md", "my-5", "hover:bg-red-950", "transition-all", "mr-2");
+        $contenedorBotones.appendChild($botonEliminar)
         $botonEliminar.addEventListener("click", async () => {
             const $idDeTarea = await tarea.id
             document.getElementById("modalEliminarTarea").classList.remove("hidden")
@@ -62,8 +71,6 @@ const renderTareas = async () => {
                 document.getElementById("modalEliminarTarea").classList.add("hidden");
             })
         });
-
-
 
         const $botonActualizar = document.createElement("button");
         $botonActualizar.innerText = "Actualizar";
@@ -103,8 +110,7 @@ const renderTareas = async () => {
             })
         })
 
-        $tareaContenedor.appendChild($botonEliminar);
-        $tareaContenedor.appendChild($botonActualizar);
+        $tareaContenedor.appendChild($contenedorBotones);
         $listaTareas.appendChild($tareaContenedor);
     });
 }

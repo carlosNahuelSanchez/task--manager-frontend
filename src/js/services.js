@@ -33,6 +33,7 @@ export const subirTareas = async ({ title, description, isComplete }) => {
     }).then((response) => response.json());
 };
 
+//Actualizar Tareas
 export const actualizarTareas = (id, { title, description, isComplete }) => {
     return fetch(API_URL + `/${id}`, {
         method: "PUT",
