@@ -74,7 +74,8 @@ const renderTareas = async () => {
 
         const $botonActualizar = document.createElement("button");
         $botonActualizar.innerText = "Actualizar";
-        $botonActualizar.classList.add("bg-zinc-500", "p-2", "rounded-md", "hover:bg-zinc-700", "transition-all");
+        $botonActualizar.classList.add("bg-zinc-500", "p-2","my-5","rounded-md", "hover:bg-zinc-700", "transition-all");
+        $contenedorBotones.appendChild($botonActualizar)
         $botonActualizar.addEventListener("click", async () => {
             const $idDeTarea = await tarea.id
             document.getElementById("modalActualizarTarea").classList.remove("hidden")
